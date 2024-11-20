@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ambulance Driver</title>
+    <script src="https://apis.mapmyindia.com/advancedmaps/v1/0ee1dbc3903b9d88460d073d3fc2c697/map_load?v=1.5"></script>
+    <script src="https://apis.mapmyindia.com/advancedmaps/api/{{token}}/map_sdk_plugins"></script>
+    
+    <style>
+        body {
+            background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://media.istockphoto.com/id/498555811/vector/lifeline-in-an-electrocardiogram.jpg?s=612x612&w=0&k=20&c=g-kYfYXVeWpRxrVwe6DnaLsNUMGaRibS4EinFcqvaBs=');
+            background-size: cover;
+            background-position: center;
+            margin: 0;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        #map {
+            width: 500px;
+            height: 500px;
+            margin: 0;
+            padding: 0;
+            background-color: rgb(233, 229, 229);
+            box-shadow:1px 1px 10px 1px black;
+        }
+
+        #nearby_search {
+            width: 500px !important;
+            background-color: green;
+            align-self:center;
+            margin-right:30px !important;
+            box-shadow:1px 1px 10px 1px black;
+        }
+        .map-map {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+        }
+
+        @media screen and (max-width:1000px){
+            .map-map{
+                flex-direction:column;
+            }
+            #nearby_search{
+                margin:0 0 50px 0 !important;
+            }
+        }
+        .logout-button {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .logout-button:hover {
+            background-color: black;
+            color: white;
+        }
+        .new-ride-button {
+            padding: 10px 15px;
+            background-color: white;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .new-ride-button:hover {
+            background-color: white;
+            color: black;
+        }
+        .hospital-card {
+            backdrop-filter: blur(10px);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            color: white;
+            font-size: 1.2em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hospital-card h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        .status span {
+            font-weight: bold;
+            color: #f5a623;
+        }
+    </style>
+</head>
+<body>
+    <div class="body">
+        <button class="logout-button" onclick="logout()">Logout</button>
+        <div class="headerr">
+            <h1>Ambulance Driver Page</h1>
+            <p>from Ambulance direct</p>
+        </div>
+        <div class="map-map">
+            <div id="nearby_search" style=" margin: 5px;width:99%;height:250px;overflow-y: auto;border-radius: 10px;"></div>
+            <div id="map"></div>
+            <div id="direction"></div>
+            <div id="hospitalInfo" class="hospital-card" style="display: none;">
+                <h2 id="hospitalName">Hospital</h2>
+                <p>Beds Available: <span id="bedsAvailable"></span></p>
+                <p>Doctors Available: <span id="doctorsAvailable"></span></p>
+                <p>Status: <span id="statusMessage"></span></p>
+            </div>
+         </div>
+         <button class="new-ride-button" onclick="reloadPage()">Start New Ride</button>
+    </div>
+    <br>
+    <br>
+    <script>
+        //Getting Geolocation using
+        function reloadPage() {
+            window.location.reload();
+        }
+
+        // Function to handle logout
+        function logout() {
+            window.location.href = "/login"; // Redirect to the login page
+        }
+        function initializeMap(lat, log) {
+            var map = new MapmyIndia.Map('map', { center: [lat, log], zoom: 10, search: false });
+            alert("in map init")
+            var options = {
+                divId: 'nearby_search',
+                map: map,
+                keywords: 'Hospital',
+                refLocation: [lat, log],
+                fitbounds: true,
+                click_callback: function (d) {
+                    console.log(d);
+                    alert("call update dir")
+                    alert("in options call back "+d)
+                    alert(d['latitude'])
+                    alert(d['lomgitude'])
+                    update_direction(map, lat, log, d["placeName"].concat(", ", d["placeAddress"]), d["eLoc"]);
+                    alert("call update done")
+                }
+            };
+            alert("call nearby options")
+            MapmyIndia.nearby(options);
+            alert("call nearby options done")
+        }
+
+        // Function to update directions to the selected hospital
+        function update_direction(map, startLat, startLog, endAddress, endEloc) {
+            /*var marker = new MapmyIndia.Marker({
+                position: endEloc, // Coordinates or eLoc of the selected hospital
+                map: map,
+                title: endAddress
+            });
+            var markerOptions = {
+                map: map,
+                eloc: endEloc, // Pass the eLoc directly here
+                popupHtml: "<h1>" + endAddress + "</h1>" // HTML content for the popup
+            };
+        
+            // Create the marker
+            var marker = MapmyIndia.elocMarker(markerOptions); */           
+            alert("called update dir in it")
+            alert(startLat+" "+startLog)
+            alert(endAddress+" "+endEloc)
+            var direction_option = {
+                map: map,
+                start: startLat + ',' + startLog,
+                end: {label: endAddress, geoposition: endEloc},
+                resource: 'route_traffic',
+                callback: function (data) {
+                }
+            };
+
+            console.log(startLat + ',' + startLog);
+            alert("call dir plugin")
+            var direction_plugin = MapmyIndia.direction(direction_option);
+            alert(direction_plugin)
+            alert("done direction plugin")
+            console.log(direction_plugin + "<--");
+            alert("calling check hospitl")
+            alert(endEloc)
+            // Add a click event listener to the marker to retrieve coordinates
+            /*marker.addListener('click', function() {
+                var position = marker.getPosition();
+                var latitude = position.lat;
+                var longitude = position.lng;
+
+                alert("Marker position: Latitude = " + latitude + ", Longitude = " + longitude);*/
+
+                function displayHospitalInfo(hospital) {
+                    document.getElementById("hospitalInfo").style.display = "block";
+                    document.getElementById("hospitalName").innerText = hospital.name || 'Hospital';
+                    document.getElementById("bedsAvailable").innerText = hospital.beds_available;
+                    document.getElementById("doctorsAvailable").innerText = hospital.doctors_available ? 'Yes' : 'No';
+                    document.getElementById("statusMessage").innerText = hospital.message || "Preparing for arrival.";
+                }
+                // Send latitude and longitude to Flask server
+                fetch('/check_hospital', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        selected_eloc: endEloc
+                        //selected_lat: latitude,
+                        //selected_lon: longitude
+                    })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.message === 'Hospital found and notification sent.') {
+                        displayHospitalInfo(data.data);
+                        alert('Hospital found! Discord Username: ' + data.data.discord_username);
+                        alert("notification sent")
+                    } else {
+                        alert('Hospital not found.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+            //});
+            alert("calll done in update")
+        }
+
+        // Function to handle successful geolocation
+        function showPosition(position) {
+            alert("in show pos")
+            var lat = position.coords.latitude;
+            var log = position.coords.longitude;
+            alert(lat+" "+log)
+            console.log(lat, log);
+            alert("in show call init")
+            initializeMap(lat, log);
+            alert("in show after call init")
+            alert("calling loc updates func")
+            startLocationUpdates()
+            alert("call loc upd done")
+        }
+
+        // Function to handle geolocation errors
+        function showError(error) {
+            console.warn(`ERROR(${error.code}): ${error.message}`);
+        }
+
+        // Request the user's current position
+        navigator.geolocation.getCurrentPosition(showPosition, showError);
+        let notifSentList = [];
+
+        function startLocationUpdates() {
+            setInterval(() => {
+                navigator.geolocation.getCurrentPosition(position => {
+                    currentLat = position.coords.latitude;
+                    currentLog = position.coords.longitude;
+                    alert("lat long taken")
+                    alert(currentLat)
+                    alert(currentLog)
+                    checkTrafficSignals(currentLat, currentLog, notifSentList);
+                }, showError);
+            }, 30000); // Fetch location every 4min
+        }
+
+        function checkTrafficSignals(lat, log, notifSentList) {
+            // Send the current location and buffer to the server
+            fetch('/check_signals', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    latitude: lat,
+                    longitude: log,
+                    notif_sent: notifSentList
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Process the response data (e.g., display signals)
+                console.log(data);
+                alert('Signals checked in buffer.');
+                 // Update the notifSentList with newly notified usernames
+                notifSentList = notifSentList.concat(data.signals);
+                console.log('Updated notifSentList:', notifSentList);
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+    
+    <!-- <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
+</body>
+</html>

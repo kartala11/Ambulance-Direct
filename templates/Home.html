@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.4.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    
+    <title>Ambulance Direct | Immediate Medical Response Service</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #12ac8e;
+  --primary-color-dark: #0d846c;
+  --primary-color-light: #e9f7f7;
+  --secondary-color: #fb923c;
+  --text-dark: #333333;
+  --text-light: #767268;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.section__container {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 5rem 1rem;
+}
+.services {
+  text-align: center;
+  margin: 20px;
+}
+
+.card-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  gap: 100px;
+}
+
+.card {
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 20px;
+  width: 300px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.card .icon img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 15px;
+}
+
+.card h3 {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.card p {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.card a {
+  display: inline-block;
+  margin-top: 10px;
+  color: #0b7dda;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.section__header {
+  margin-bottom: 0.5rem;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.btn {
+  padding: 0.75rem 2rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  white-space: nowrap;
+  color: var(--white);
+  background-color: var(--secondary-color);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  display: flex;
+}
+
+a {
+  text-decoration: none;
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+header {
+  
+  
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.nav__container {
+  padding: 2rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.nav__logo span {
+  color: var(--secondary-color);
+}
+
+.nav__links {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.link a {
+  padding: 0.5rem;
+  color: var(--primary-color-light);
+}
+
+.link a:hover {
+  color: var(--white);
+}
+
+.header__container {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+.header__container h1 {
+  margin-bottom: 1rem;
+  max-width: 800px;
+  font-size: 3.5rem;
+  line-height: 4rem;
+  color: var(--white);
+}
+
+.header__container p {
+  margin-bottom: 2rem;
+  max-width: 600px;
+  color: var(--primary-color-light);
+}
+
+.header__form {
+  width: 100%;
+  max-width: 350px;
+}
+
+.header__form form {
+  display: grid;
+  gap: 1rem;
+  padding: 2rem;
+  background-color: var(--white);
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.header__form input {
+  padding: 1rem;
+  outline: none;
+  border: none;
+  font-size: 1rem;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+  border-radius: 5px;
+}
+
+.header__form input::placeholder {
+  color: var(--primary-color);
+}
+
+.form__btn {
+  background-color: var(--primary-color);
+  transition: 0.3s;
+}
+
+.form__btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.header__form h4 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.card{
+  text-align: center;
+}
+.about__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.about__content p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.about__image img {
+  max-width: 400px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.why__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.why__image img {
+  max-width: 400px;
+  margin: auto;
+  border-radius: 10px;
+}
+
+.why__content p {
+  color: var(--text-light);
+}
+
+.why__grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 80px auto;
+  gap: 2rem;
+}
+
+.why__grid span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  border-radius: 10px;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.why__grid h4 {
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.why__grid p {
+  color: var(--text-light);
+}
+
+.doctors__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.doctors__header__content p {
+  max-width: 600px;
+  color: var(--text-light);
+}
+
+.doctors__nav {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.doctors__nav span {
+  padding: 5px 15px;
+  font-size: 1.5rem;
+  color: var(--primary-color);
+  background-color: var(--primary-color-light);
+  cursor: pointer;
+}
+
+.doctors__grid {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.doctors__card {
+  text-align: center;
+  box-shadow: 5px 5px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.doctors__card__image {
+  position: relative;
+  overflow: hidden;
+}
+
+.doctors__socials {
+  position: absolute;
+  left: 0;
+  bottom: -4rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  transition: 0.5s;
+}
+
+.doctors__socials span {
+  display: inline-block;
+  padding: 6px 12px;
+  font-size: 1.5rem;
+  color: var(--text-dark);
+  background-color: var(--white);
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.doctors__socials span:hover {
+  color: var(--primary-color);
+}
+
+.doctors__card:hover .doctors__socials {
+  bottom: 2rem;
+}
+
+.doctors__card h4 {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.doctors__card p {
+  margin-bottom: 1rem;
+  color: var(--text-light);
+}
+
+.footer {
+  background-color: var(--primary-color-light);
+}
+
+.footer__container {
+  display: grid;
+  grid-template-columns: 400px repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.footer__col h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.footer__col h3 span {
+  color: var(--secondary-color);
+}
+
+.footer__col h4 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.footer__col p {
+  margin-bottom: 1rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer__col p:hover {
+  color: var(--primary-color);
+}
+
+.footer__col i {
+  color: var(--primary-color);
+}
+
+.footer__bar {
+  background-color: var(--primary-color);
+}
+
+.footer__bar__content {
+  max-width: var(--max-width);
+  margin: auto;
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.footer__bar__content p {
+  font-size: 0.8rem;
+  color: var(--white);
+}
+
+.footer__socials {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: var(--white);
+  cursor: pointer;
+}
+
+@media (width < 900px) {
+  .service__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .about__container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .about__image {
+    grid-area: 1/1/2/2;
+  }
+
+  .about__content {
+    text-align: center;
+  }
+
+  .why__container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .why__content {
+    text-align: center;
+  }
+
+  .why__grid {
+    text-align: left;
+  }
+
+  .doctors__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .footer__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width < 780px) {
+  .nav__links {
+    display: none;
+  }
+
+  .header__container {
+    flex-direction: column;
+  }
+}
+
+@media (width < 600px) {
+  .service__header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .service__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .why__grid {
+    column-gap: 1rem;
+  }
+
+  .doctors__header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .doctors__grid {
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .footer__bar__content {
+    flex-direction: column;
+    gap: 1rem;
+  }
+}
+.navbar{
+  padding-left: 20px;
+ padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+.navv{
+  
+  color: white;
+  margin-right: 20px;
+  padding: 10px;
+ 
+  
+}
+.navv:hover{
+  color:black;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+.ambdir{
+  color:white;
+}
+.head{
+  
+  background-image:linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('https://annaiambulance.in/wp-content/uploads/2024/03/653c250e8c6372d5fb6f1927637ffa01.jpg');
+} 
+.registered-count {
+  text-align: center;
+  margin-top: 40px;
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  align-items: start;
+  margin-top: 20px;
+}
+
+.stat-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  width: 250px;
+  text-align: center;
+}
+
+.stat-card h4 {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.stat-card p {
+  font-size: 18px;
+  color: #555;
+}
+
+.learn-more {
+  display: inline-block;
+  margin-top: 10px;
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.learn-more:hover {
+  text-decoration: underline;
+}
+
+    </style>
+  </head>
+  <body>
+    <header class="head">
+      <nav class="navbar">
+        <a href="#home" class="ambdir">Ambulance Direct</a>
+        <div>
+         <a href="#home" class="navv">Home</a>
+          <a href="register" class="navv">Register</a>
+          <a href="login" class="navv">Login</a>
+          <a href="/hospitals" class="navv">Hospitals</a>
+          <a href="#" class="navv">Testimonials</a>
+        </div>
+        
+      </nav>
+      <div class="section__container header__container" id="home">
+        <div class="header__content">
+          <h1>Providing an Exceptional Patient Experience</h1>
+          <p>
+            Welcome, where exceptional patient experiences are our priority.
+            With compassionate care, state-of-the-art facilities, and a
+            patient-centered approach, we're dedicated to your well-being. Trust
+            us with your health and experience the difference.
+          </p>
+          <button class="btn">See Services</button>
+        </div>
+        
+      </div>
+    </header>
+
+    <div class="services">
+      <h2>Our Special Services</h2><br>
+      <p>Ensuring seamless integration of healthcare and traffic management for critical emergencies.</p>
+      <div class="card-container">
+          <div class="card">
+              <div class="icon">
+                  <!-- Hospital Icon -->
+                  <img src="data:image/jpeg;base64,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" alt="Hospital Icon">
+              </div>
+              <h3>Hospitals</h3>
+              <p>Connected hospitals in our network, ready to provide quick care in emergencies.</p>
+              <a href="#">Learn More</a>
+          </div>
+          <div class="card">
+              <div class="icon">
+                  <!-- Traffic Police Icon -->
+                  <img src="data:image/png;base64,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" alt="Traffic Police Icon">
+              </div>
+              <h3>Traffic Police</h3>
+              <p>Coordinate with traffic police for smooth and uninterrupted ambulance passage.</p>
+              <a href="#">Learn More</a>
+          </div>
+          <div class="card">
+              <div class="icon">
+                  <!-- Driver Icon -->
+                  <img src="data:image/png;base64,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" alt="Driver Icon">
+              </div>
+              <h3>Registered Drivers</h3>
+              <p>Skilled and registered ambulance drivers ensuring safe and timely patient transport.</p>
+              <a href="#">Learn More</a>
+          </div>
+      </div>
+  </div>
+  <br>
+  
+  <div class="services">
+    <h2>Our Users</h2><br>
+    
+    <div class="card-container">
+        <div class="card">
+          <h4>Hospitals</h4>
+          <p id="hospital-count">Loading...</p>
+          <a href="#" class="learn-more">Learn More</a>
+        </div>
+        <div class="card">
+          <h4>Traffic Police</h4>
+          <p id="police-count">Loading...</p>
+          <a href="#" class="learn-more">Learn More</a>
+        </div>
+        <div class="card">
+          <h4>Ambulance Drivers</h4>
+          <p id="driver-count">Loading...</p>
+          <a href="#" class="learn-more">Learn More</a>
+        </div>
+        
+    </div>
+</div>
+
+  
+    <section class="section__container about__container" id="about">
+      <div class="about__content">
+        <h2 class="section__header">About Us</h2>
+        <p>
+          At <strong>Ambulance Direct</strong>, we are dedicated to transforming urban emergency medical services. Our innovative platform connects ambulance drivers, citizens, traffic police, and hospitals to streamline communication and ensure timely medical care when every second counts.
+      </p>
+      <h3>Our Mission</h3>
+      <p>
+          We strive to minimize delays in emergency responses by fostering real-time collaboration among all stakeholders. By empowering ambulance drivers with essential tools and optimizing traffic management, we aim to enhance the efficiency of medical transport in critical situations.
+      </p>
+      
+      </div>
+      <div class="about__image">
+        <img src="assets/about.jpg" alt="about" />
+      </div>
+    </section>
+
+    
+
+    <!-- <section class="section__container doctors__container" id="pages">
+      <div class="doctors__header">
+        <div class="doctors__header__content">
+          <h2 class="section__header">Our Special Doctors</h2>
+          <p>
+            We take pride in our exceptional team of doctors, each a specialist
+            in their respective fields.
+          </p>
+        </div>
+        <div class="doctors__nav">
+          <span><i class="ri-arrow-left-line"></i></span>
+          <span><i class="ri-arrow-right-line"></i></span>
+        </div>
+      </div>
+      <div class="doctors__grid">
+        <div class="doctors__card">
+          <div class="doctors__card__image">
+            <img src="assets/doctor-1.jpg" alt="doctor" />
+            <div class="doctors__socials">
+              <span><i class="ri-instagram-line"></i></span>
+              <span><i class="ri-facebook-fill"></i></span>
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-twitter-fill"></i></span>
+            </div>
+          </div>
+          <h4>Dr. Emily Smith</h4>
+          <p>Cardiologist</p>
+        </div>
+        <div class="doctors__card">
+          <div class="doctors__card__image">
+            <img src="assets/doctor-2.jpg" alt="doctor" />
+            <div class="doctors__socials">
+              <span><i class="ri-instagram-line"></i></span>
+              <span><i class="ri-facebook-fill"></i></span>
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-twitter-fill"></i></span>
+            </div>
+          </div>
+          <h4>Dr. James Anderson</h4>
+          <p>Neurosurgeon</p>
+        </div>
+        <div class="doctors__card">
+          <div class="doctors__card__image">
+            <img src="assets/doctor-3.jpg" alt="doctor" />
+            <div class="doctors__socials">
+              <span><i class="ri-instagram-line"></i></span>
+              <span><i class="ri-facebook-fill"></i></span>
+              <span><i class="ri-heart-fill"></i></span>
+              <span><i class="ri-twitter-fill"></i></span>
+            </div>
+          </div>
+          <h4>Dr. Michael Lee</h4>
+          <p>Dermatologist</p>
+        </div>
+      </div>
+    </section> -->
+
+    <footer class="footer">
+      <div class="section__container footer__container">
+        <div class="footer__col">
+          <h3>Health<span>Care</span></h3>
+          <p>
+            We are honored to be a part of your healthcare journey and committed
+            to delivering compassionate, personalized, and top-notch care every
+            step of the way.
+          </p>
+          <p>
+            Trust us with your health, and let us work together to achieve the
+            best possible outcomes for you and your loved ones.
+          </p>
+        </div>
+        <div class="footer__col">
+          <h4>About Us</h4>
+          <p>Home</p>
+          <p>About Us</p>
+          <p>Work With Us</p>
+          <p>Our Blog</p>
+          <p>Terms & Conditions</p>
+        </div>
+        <div class="footer__col">
+          <h4>Services</h4>
+          <p>Search Terms</p>
+          <p>Advance Search</p>
+          <p>Privacy Policy</p>
+          <p>Suppliers</p>
+          <p>Our Stores</p>
+        </div>
+        <div class="footer__col">
+          <h4>Contact Us</h4>
+          <p>
+            <i class="ri-map-pin-2-fill"></i> 123, London Bridge Street, London
+          </p>
+          <p><i class="ri-mail-fill"></i> support@care.com</p>
+          <p><i class="ri-phone-fill"></i> (+012) 3456 789</p>
+        </div>
+      </div>
+      <div class="footer__bar">
+        <div class="footer__bar__content">
+          <p>Copyright © 2023 Web Design Mastery. All rights reserved.</p>
+          <div class="footer__socials">
+            <span><i class="ri-instagram-line"></i></span>
+            <span><i class="ri-facebook-fill"></i></span>
+            <span><i class="ri-heart-fill"></i></span>
+            <span><i class="ri-twitter-fill"></i></span>
+          </div>
+        </div>
+      </div>
+    </footer>
+    <script>
+      async function fetchCounts() {
+          try {
+              const response = await fetch('/get_counts'); // Replace with your actual endpoint
+              const data = await response.json();
+
+              document.getElementById('hospital-count').innerText = data.hospitals;
+              document.getElementById('police-count').innerText = data.traffic_police;
+              document.getElementById('driver-count').innerText = data.ambulance_drivers;
+          } catch (error) {
+              console.error('Error fetching counts:', error);
+          }
+      }
+
+      // Fetch counts on page load
+      fetchCounts();
+  </script>
+  </body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@200;300;400;500;600;700&display=swap");
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Open Sans", sans-serif;
+        }
+
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            width: 100%;
+            padding: 0 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("https://media.istockphoto.com/id/498555811/vector/lifeline-in-an-electrocardiogram.jpg?s=612x612&w=0&k=20&c=g-kYfYXVeWpRxrVwe6DnaLsNUMGaRibS4EinFcqvaBs=") center/cover no-repeat;
+        }
+
+        .container {
+            width: 400px;
+            max-height: 80vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            color: white;
+        }
+
+        h1, h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-bottom: 2px solid #aaa;
+            background: transparent;
+            color: white;
+            outline: none;
+        }
+
+        /* White color for placeholder text */
+        input::placeholder,
+        select::placeholder {
+            color: white;
+            opacity: 0.7; /* Optional: Adjust opacity for better readability */
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="password"]:focus,
+        input[type="number"]:focus,
+        select:focus {
+            border-bottom: 2px solid #2980b9;
+        }
+
+        select {
+            color: #ccc;
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            background-color: white;
+            color: #0a0e2e;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+
+        .conditional-fields {
+            margin-top: 20px;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 30px;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ambulance Direct Registration</h1>
+        <h2>Join us today</h2>
+        <form method="POST">
+            <div class="form-group">
+                <input type="text" id="username" name="username" placeholder="Username" required>
+            </div>
+            <div class="form-group">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+            </div>
+            <div class="form-group">
+                <input type="password" id="password" name="password" placeholder="Password" required>
+            </div>
+            <div class="form-group">
+                <select id="role" name="role" required>
+                    <option value="" disabled selected>Select your role</option>
+                    <option value="ambulance_driver">Ambulance Driver</option>
+                    <option value="traffic_police">Traffic Police</option>
+                    <option value="hospital">Hospital</option>
+                </select>
+            </div>
+
+            <div id="traffic-police-fields" class="conditional-fields" style="display: none;">
+                <div class="form-group">
+                    <input type="text" id="signal_location" name="signal_location" placeholder="Signal Location">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="trlatitude" name="trlatitude" placeholder="Signal Latitude">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="trlongitude" name="trlongitude" placeholder="Signal Longitude">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="discord_username" name="discord_username" placeholder="Discord Username">
+                </div>
+            </div>
+
+            <div id="hospital-fields" class="conditional-fields" style="display: none;">
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder="Hospital Name">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hsptl_location" name="hsptl_location" placeholder="Hospital Location">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hsptl_latitude" name="hsptl_latitude" placeholder="Hospital Latitude">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hsptl_longitude" name="hsptl_longitude" placeholder="Hospital Longitude">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hsptl_eloc" name="hsptl_eloc" placeholder="Hospital ELoc">
+                </div>
+                <div class="form-group">
+                    <input type="number" id="beds_available" name="beds_available" placeholder="Beds Available">
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="doctors_available" name="doctors_available">
+                    <label for="doctors_available" style="color: #fff;">Doctors Available</label>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="hsptl_duname" name="hsptl_duname" placeholder="Hospital Discord Username">
+                </div>
+            </div>
+
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const roleSelect = document.getElementById('role');
+            const trafficPoliceFields = document.getElementById('traffic-police-fields');
+            const hospitalFields = document.getElementById('hospital-fields');
+        
+            roleSelect.addEventListener('change', () => {
+                const selectedRole = roleSelect.value;
+        
+                if (selectedRole === 'traffic_police') {
+                    trafficPoliceFields.style.display = 'block';
+                    hospitalFields.style.display = 'none';
+                } else if (selectedRole === 'hospital') {
+                    hospitalFields.style.display = 'block';
+                    trafficPoliceFields.style.display = 'none';
+                } else {
+                    trafficPoliceFields.style.display = 'none';
+                    hospitalFields.style.display = 'none';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
